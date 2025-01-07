@@ -1,4 +1,4 @@
-print("Tardis extended loading just sayin") -- like my beautiful code
+
 
 --[[traitList = {"adrenaline", 
 "lazy", 
@@ -33,9 +33,11 @@ if CLIENT then return end
                 end
             end
         end
-        PrintMessage(HUD_PRINTTALK, "--" )
-        for k,v in pairs(self:GetData("tardis-traits")) do
-            PrintMessage(HUD_PRINTTALK, v )
+        if GetConVar("tardis_ex_moodshowchat"):GetBool() then
+            PrintMessage(HUD_PRINTTALK, "--" )
+            for k,v in pairs(self:GetData("tardis-traits")) do
+                PrintMessage(HUD_PRINTTALK, v )
+            end
         end
     end
 
@@ -207,7 +209,6 @@ hook.Add( "EntityTakeDamage", "tardis-ext-preventdeath", function( victim, dmgin
     if victim:IsPlayer() and dmginfo:GetDamage() >= victim:Health() then --- only fatal
         for i,v in ipairs(ents.FindByClass("gmod_tardis_interior")) do
             if victim == v.exterior:GetCreator() and v:GetData("tardis-mood") > 200 and v:GetPower() and math.random(1,10) == 2 then
-                print("your ifawefn")
                 print("Savior")
                 dmginfo:SetDamage(0)
                 victim:SetHealth(victim:GetMaxHealth())

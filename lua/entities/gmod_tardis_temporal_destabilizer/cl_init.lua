@@ -3,7 +3,7 @@ function ENT:Draw()
     self:DrawModel()
 end
 if CLIENT then
-    net.Receive("tardis-ext-empparticle",function(len) 
+    net.Receive("tardis-ext-tdparticle",function(len) 
         ob = net.ReadEntity()
         local vPoint = ob:GetPos() + (25 * ob:GetUp())
         local effectdata = EffectData()
@@ -14,4 +14,10 @@ if CLIENT then
         util.Effect( "ElectricSpark", effectdata )
     
     end)
-    end
+        net.Receive("tardis-ext-tdincrease",function(len) 
+            _G.TDsActive = _G.TDsActive + 1
+        end)
+        net.Receive("tardis-ext-tddecrease",function(len) 
+            _G.TDsActive = _G.TDsActive - 1
+        end)
+end

@@ -1,5 +1,5 @@
 if SERVER then
-    ENT:AddHook("Think", "tardis-ext-legacycrashthink", function(self)
+    --[[ENT:AddHook("Think", "tardis-ext-legacycrashthink", function(self)
         if CurTime() < self:GetData("next-tardis-dieflying-update", 0) then return end 
         self:SetData("next-tardis-dieflying-update", CurTime() + 1)
     end)
@@ -14,6 +14,6 @@ if SERVER then
                 self:SetData("next-tardis-dieflying-update",5,true)
             end
         end
-    end)
+    end)]]--
     --ph:AddVelocity(AngleRand():Forward()*(vell))
 end
